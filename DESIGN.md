@@ -59,30 +59,56 @@ speelse beweging zit in de figuren, niet in de dozen. Drie schaduwstanden
 (vlak, kaart, zwevend) en verder geen zachte schaduwen, geen glas, geen
 verloopjes.
 
+## De markering in de kop
+
+Het gele vlak achter "meebeweegt" is geen rechthoek maar een markeerstreek.
+Fredoka heeft een inhoudshoogte van 1,21em, terwijl de letters zelf 0,91em
+zijn: kaphoogte 0,69em plus een staart van 0,22em. Een vlak over de hele
+inhoudshoogte laat dus 0,28em dode ruimte boven de letters staan, en oogt
+als een gele plaat in plaats van een markering.
+
+De oplossing is een verloop dat vanaf de onderkant van de inhoudshoogte
+0,94em omhoog loopt: precies van de basislijn tot net boven de kaphoogte.
+De staart van de g valt er netjes in.
+
 ## Beweging
 
 Zeven bewegingen, elk met een eigen taal en een eigen reden. Ze eten elkaar
 niet op omdat ze elk een andere CSS-eigenschap gebruiken: transform voor de
 veer, translate voor de dobber, scale voor de squash.
 
-1. **De veer** (transform, 700ms): elke figuur veert tevoorschijn als hij in
-   beeld komt, met 110ms verschil per figuur in dezelfde rij. Zonder
-   JavaScript staan ze meteen er, de pagina is nooit leeg.
-2. **De dobber** (translate, 4,2 tot 7s): de figuren zweven traag op en neer,
-   elke met een eigen fase.
-3. **De squash** (scale, 520ms): als je met de muis bij een kaart komt,
-   ploft de figuur even in de breedte en wordt hij weer lang. Alleen met een
-   echte aanwijzer, want op een touch scherm blijft hij anders plofken.
-4. **De drifter** (transform, 16 tot 22s): twee figuren per grote sectie
-   drijven op de achtergrond, half doorzichtig. Sfeer, geen inhoud.
-5. **Het oplopende pad** (transform, 500ms): de lijn van het leerpad kleurt
+Het tempo is bewust langzaam: alles duurt ongeveer twee keer zo lang als
+gewoonlijk en de amplitude is klein. Een figuur die te snel veert of te
+snel squasht wordt niet meer gevoeld als een figuur, maar als een flits.
+
+1. **De veer** (transform, 1200ms): elke figuur veert tevoorschijn als hij
+   in beeld komt, met 180ms verschil per figuur in dezelfde rij. De
+   overshoot is klein (6% in plaats van 14%), zodat het een veer blijft en
+   geen sprong. Zonder JavaScript staan ze meteen er, de pagina is nooit
+   leeg.
+2. **De dobber** (translate, 8 tot 11,5s): de figuren zweven in een zachte
+   slag van 9px, elke met een eigen fase. De beweging is bewust nauwelijks
+   zichtbaar: je merkt haar pas als je er naar kijkt.
+3. **De squash** (scale, 600ms): als je met de muis bij een kaart komt,
+   ploft de figuur 7% in de breedte en 5% in de hoogte. Een overgang, geen
+   animatie, zodat de veer en de dobber doorgaan. Alleen met een echte
+   aanwijzer, want op een touch scherm blijft hij anders plofken.
+4. **De drifter** (transform, 28 tot 40s): twee figuren per grote sectie
+   drijven op de achtergrond, met 22% ondoorzichtig. Sfeer, geen inhoud.
+5. **Het oplopende pad** (transform, 900ms): de lijn van het leerpad kleurt
    op tot de stap die je leest. Het pad is een leerpad en je ziet hoe ver
    je bent.
-6. **De reactie** (transform, 620ms): de mascotte naast de prijsindicatie
+6. **De reactie** (transform, 950ms): de mascotte naast de prijsindicatie
    veert telkens als het totaal verandert. En de mascotte naast de knop in
    de hero reageert als je die benadert.
-7. **De viering** (transform, 1s): bij een verstuurde aanvraag dwarrelen
+7. **De viering** (transform, 1800ms): bij een verstuurde aanvraag dwarrelen
    achttien stukjes confetti uit de resultaatkaart.
+
+De figuren in de hero volgen je aanwijzer: elke figuur heeft een eigen
+diepte (de grote beweegt bijna niet, de kleine het meest) en het JavaScript
+dempt de beweging per frame, zodat ze meeglijden in plaats van te schokken.
+Het gaat om een verschil van twaalf pixels op het hoogste, dus het is een
+hint en geen spelletje.
 
 Daarnaast: knoppen duiken in als je klikt en wiebelen even bij hover, het
 label boven een kop komt met een tik, en blokken komen in beeld bij het

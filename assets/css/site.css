@@ -569,11 +569,20 @@ textarea {
   font-weight: 600;
 }
 
+/* De markering achter het laatste woord. Fredoka heeft een inhoudshoogte
+   van 1,21em, maar de letters zelf zijn maar 0,91em hoog (kaphoogte 0,69em
+   plus een staart van 0,22em). Het gele vlak loopt dus van de onderkant van
+   de inhoudshoogte tot 0,70em boven de basislijn: precies om de letters
+   heen, met de staart van de g erin. */
 .hero__title mark {
-  background: var(--geel);
+  padding: 0 0.16em;
+  background: linear-gradient(
+    to top,
+    var(--geel) 0 0.94em,
+    rgb(248 184 40 / 0.75) 0.94em,
+    transparent 1em
+  ) no-repeat;
   color: var(--ink);
-  padding: 0 0.12em;
-  border-radius: 0.35rem;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
@@ -622,28 +631,60 @@ textarea {
 }
 
 .hero__cast {
+  --px: 0px;
+  --py: 0px;
   position: relative;
   display: grid;
   place-items: center;
   min-height: 24rem;
 }
 
+/* Elke figuur heeft een eigen diepte: de grote beweegt het minst, de
+   kleine het meest. Zo ontstaat er diepte zonder dat het druk wordt. */
 .hero__cast img {
   position: absolute;
   width: clamp(6.5rem, 4.5rem + 7vw, 10.5rem);
   height: auto;
   filter: drop-shadow(0 14px 20px rgb(20 54 92 / 0.16));
+  transform: translate(
+    calc(var(--px) * var(--diepte, 1)),
+    calc(var(--py) * var(--diepte, 1))
+  );
+  /* De beweging zelf dempt JavaScript per frame, dus die heeft geen
+     overgang nodig. Alleen de squash heeft er een. */
+  transition: scale 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
 .hero__cast .cast-1 {
   position: relative;
   width: clamp(10rem, 7rem + 11vw, 17rem);
   z-index: 2;
+  --diepte: 0.45;
 }
 
-.cast-2 { top: 0; left: 0; transform: rotate(-10deg); }
-.cast-3 { bottom: 4%; right: 0; transform: rotate(9deg); z-index: 3; }
-.cast-4 { top: 4%; right: 16%; transform: rotate(14deg); width: clamp(4.5rem, 3rem + 4vw, 7rem); z-index: 1; }
+.cast-2 {
+  top: 0;
+  left: 0;
+  rotate: -10deg;
+  --diepte: 1.35;
+}
+
+.cast-3 {
+  bottom: 4%;
+  right: 0;
+  rotate: 9deg;
+  z-index: 3;
+  --diepte: 1.1;
+}
+
+.cast-4 {
+  top: 4%;
+  right: 16%;
+  rotate: 14deg;
+  width: clamp(4.5rem, 3rem + 4vw, 7rem);
+  z-index: 1;
+  --diepte: 1.55;
+}
 
 /* --- 7. Diensten --------------------------------------------------------- */
 
@@ -1552,22 +1593,22 @@ legend {
 .footer-cast .fc-2 { right: 6%; bottom: -30%; width: 10rem; }
 
 /* --- 15. Motion ----------------------------------------------------------
-   Vier bewegingen, elk met een reden:
-   1. de veer: een figuur die in beeld komt (blob-in)
-   2. de dobber: een figuur die in rust staat (blob-bob)
-   3. de squash: een figuur die reageert op een aanwijzer (blob-squash)
-   4. de drifter: een figuur die op de achtergrond meebeweegt (blob-drift)
-   Elke beweging heeft een eigen, benoemde eigenschap, zodat ze elkaar
-   niet opeten: transform voor de veer, translate voor de dobber, scale
-   voor de squash. */
+   Zeven bewegingen, elk met een reden. Ze eten elkaar niet op omdat ze
+   elk een andere CSS-eigenschap gebruiken: transform voor de veer,
+   translate voor de dobber, scale voor de squash.
+
+   Het tempo is bewust langzaam. Een figuur die te snel veert of te snel
+   squasht wordt niet meer gevoeld als een figuur, maar als een flits.
+   Daarom duurt alles ongeveer twee keer zo lang als een gebruikelijke
+   animatie en is de amplitude klein. */
 
 /* Scroll-reveal: blokken komen omhoog in beeld. */
 .js-reveal {
   opacity: 0;
   transform: translateY(22px);
   transition:
-    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -1576,18 +1617,18 @@ legend {
   transform: none;
 }
 
-/* 1. De veer: de figuur komt in beeld met een overshoot. */
+/* 1. De veer: de figuur komt in beeld met een kleine overshoot. */
 @keyframes blob-in {
   0% {
     opacity: 0;
-    transform: scale(0.3) rotate(-16deg);
+    transform: scale(0.45) rotate(-10deg);
   }
   55% {
     opacity: 1;
-    transform: scale(1.14) rotate(7deg);
+    transform: scale(1.06) rotate(4deg);
   }
-  75% {
-    transform: scale(0.94) rotate(-4deg);
+  78% {
+    transform: scale(0.975) rotate(-2deg);
   }
   100% {
     opacity: 1;
@@ -1595,42 +1636,32 @@ legend {
   }
 }
 
-/* 2. De dobber: de figuur zweeft traag op en neer. */
+/* 2. De dobber: de figuur zweeft traag, in een zachte slag. */
 @keyframes blob-bob {
   0%,
   100% {
     translate: 0 0;
   }
+  25% {
+    translate: 3px -6px;
+  }
   50% {
-    translate: 0 -14px;
+    translate: 0 -9px;
+  }
+  75% {
+    translate: -3px -5px;
   }
 }
 
 /* 3. De squash: de figuur reageert als je er met de muis bij komt. */
-@keyframes blob-squash {
-  0%,
-  100% {
-    scale: 1;
-  }
-  22% {
-    scale: 1.16 0.84;
-  }
-  52% {
-    scale: 0.92 1.09;
-  }
-  78% {
-    scale: 1.05 0.95;
-  }
-}
-
 /* 4. De drifter: een figuur op de achtergrond die langzaam meebeweegt. */
 @keyframes blob-drift {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(-7deg);
+    transform: translate3d(0, 0, 0) rotate(-5deg);
   }
   50% {
-    transform: translate3d(22px, -30px, 0) rotate(7deg);
+    transform: translate3d(14px, -20px, 0) rotate(5deg);
   }
 }
 
@@ -1641,7 +1672,7 @@ legend {
     scale: 1;
   }
   50% {
-    scale: 1.045 0.96;
+    scale: 1.03 0.98;
   }
 }
 
@@ -1649,11 +1680,11 @@ legend {
 @keyframes chip-in {
   0% {
     opacity: 0;
-    transform: translateY(-10px) scale(0.86);
+    transform: translateY(-8px) scale(0.9);
   }
   60% {
     opacity: 1;
-    transform: translateY(2px) scale(1.05);
+    transform: translateY(2px) scale(1.03);
   }
   100% {
     opacity: 1;
@@ -1668,23 +1699,10 @@ legend {
     rotate: 0deg;
   }
   25% {
-    rotate: -2.5deg;
+    rotate: -1.4deg;
   }
   75% {
-    rotate: 2.5deg;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btn:hover {
-    animation: btn-wiggle 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  /* De mascotte veert mee als je de knop benadert. */
-  .hero__actions:hover .hero__mascot {
-    animation:
-      blob-bob 4.2s ease-in-out infinite,
-      blob-squash 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    rotate: 1.4deg;
   }
 }
 
@@ -1701,45 +1719,63 @@ legend {
 }
 
 /* De veer speelt pas wanneer de figuur in beeld is. Zonder JavaScript
-   staat alles meteen er, dus de pagina blijft altijd compleet. */
+   staat alles meteen er, dus de pagina blijft altijd compleet.
+
+   De animatie heeft twee sleuven: de veer (transform) en de rustbeweging
+   (translate). Zo kan een figuur tegelijk veergekomen én blijven dobberen.
+   De rustbeweging is een variabele, dus alleen figuren met de klasse
+   .blob-bob krijgen hem. */
 .js .blob-in {
-  animation: blob-in 700ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
-  animation-delay: var(--pop-delay, 0ms);
-  animation-play-state: paused;
+  animation-name: blob-in, var(--rust, none);
+  animation-duration: 1200ms, var(--rust-tijd, 0s);
+  animation-timing-function: cubic-bezier(0.34, 1.15, 0.64, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: backwards, none;
+  animation-delay: var(--pop-delay, 0ms), 0s;
+  animation-play-state: paused, running;
 }
 
 .js .blob-in.is-in {
-  animation-play-state: running;
+  animation-play-state: running, running;
 }
 
+/* Zonder JavaScript: de veer speelt meteen en de rust start meteen. */
 .blob-in {
-  animation: blob-in 700ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
-  animation-delay: var(--pop-delay, 0ms);
+  animation-name: blob-in, var(--rust, none);
+  animation-duration: 1200ms, var(--rust-tijd, 0s);
+  animation-timing-function: cubic-bezier(0.34, 1.15, 0.64, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: backwards, none;
+  animation-delay: var(--pop-delay, 0ms), 0s;
 }
 
+/* De rustbeweging: traag en in een zachte slag. */
 .blob-bob {
-  animation: blob-bob 5.5s ease-in-out infinite;
+  --rust: blob-bob;
+  --rust-tijd: 9s;
 }
 
 .blob-bob--slow {
-  animation-duration: 7s;
-  animation-delay: -1.4s;
+  --rust-tijd: 11.5s;
 }
 
 .blob-bob--fast {
-  animation-duration: 4.4s;
-  animation-delay: -2.6s;
+  --rust-tijd: 8s;
 }
 
-/* De squash werkt alleen met een echte aanwijzer: op een touch scherm
-   zou de figuur blijven squashed. */
+/* De squash: de figuur reageert als je er met de muis bij komt. Het is
+   een overgang op de schaal, zodat de veer en de dobber doorgaan. */
+.blob-squash {
+  transition: scale 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .blob-squash:hover,
   .service-card:hover .blob-squash,
   .work-card:hover .blob-squash,
   .path__step:hover .blob-squash,
   .why-card:hover .blob-squash {
-    animation: blob-squash 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    scale: 1.07 0.95;
   }
 }
 
@@ -1765,33 +1801,32 @@ legend {
   pointer-events: none;
   opacity: 0.22;
   animation:
-    blob-drift 18s ease-in-out infinite,
-    blob-breathe 6s ease-in-out infinite;
+    blob-drift 32s ease-in-out infinite,
+    blob-breathe 9s ease-in-out infinite;
 }
 
 .drift--a {
-  animation-duration: 16s, 5s;
+  animation-duration: 28s, 8s;
   animation-delay: -2s, -1s;
 }
 
 .drift--b {
-  animation-duration: 22s, 7.5s;
+  animation-duration: 40s, 11s;
   animation-delay: -7s, -3.5s;
 }
 
 .drift--c {
-  animation-duration: 19s, 6.5s;
+  animation-duration: 34s, 9.5s;
   animation-delay: -12s, -2.5s;
 }
 
 /* Het label boven een kop komt met een tik. */
 .js .section__head.is-in .chip,
 .js .faq.is-in .chip {
-  animation: chip-in 520ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation: chip-in 800ms cubic-bezier(0.34, 1.2, 0.64, 1) backwards;
 }
 
-/* De leerpad-lijn loopt door de figuren heen en kleurt op tot de stap
-   die je leest. */
+/* De leerpad-lijn wordt stukje voor stukje ingekleurd. */
 .path__rail {
   position: absolute;
   left: var(--pad-lijn);
@@ -1803,7 +1838,7 @@ legend {
   background: var(--teal);
   transform-origin: top center;
   transform: scaleY(var(--path-progress, 0));
-  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 0;
 }
 
@@ -1816,7 +1851,7 @@ legend {
   height: 0.75rem;
   border-radius: 2px;
   pointer-events: none;
-  animation: confetti-fly 1000ms cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
+  animation: confetti-fly 1800ms cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
 }
 
 /* De mascotte naast de prijsindicatie. */
@@ -1838,7 +1873,7 @@ legend {
 }
 
 .price__mascot.is-happy {
-  animation: blob-in 620ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: blob-in 950ms cubic-bezier(0.34, 1.15, 0.64, 1);
 }
 
 /* --- 16. Responsief ------------------------------------------------------ */

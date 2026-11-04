@@ -156,12 +156,16 @@ stuk). Wil je ze vervangen: leg een nieuwe PNG met dezelfde naam in
 ffmpeg -i nieuw.png -vf "scale=520:-1" -c:v libwebp -quality 88 nieuw.webp
 ```
 
-De beweging: elke figuur veert tevoorschijn als hij in beeld komt (700ms,
-110ms verschil per figuur), de figuren zweven traag, de lijn van het leerpad
-kleurt op tot de stap die je leest, de mascotte naast de prijs veert als het
-totaal verandert, en bij een verstuurde aanvraag dwarrelen er stukjes
-confetti uit de resultaatkaart. Knoppen duiken in als je klikt en wiebelen
-even bij hover.
+De beweging is bewust langzaam: elke figuur veert tevoorschijn als hij in
+beeld komt (1200ms, 180ms verschil per figuur), de figuren zweven in een
+zachte slag van 9px, de lijn van het leerpad kleurt op tot de stap die je
+leest, de mascotte naast de prijs veert als het totaal verandert, en bij een
+verstuurde aanvraag dwarrelen er stukjes confetti uit de resultaatkaart.
+Knoppen duiken in als je klikt en wiebelen even bij hover.
+
+De figuren in de hero volgen je aanwijzer zachtjes mee, elk met een eigen
+diepte: de grote beweegt bijna niet, de kleine het meest. Het gaat om
+twaalf pixels op het hoogste, gedempt per frame, dus het is een hint.
 
 Zonder JavaScript staan alle figuren meteen in beeld: de pagina is nooit
 leeg. Onder `prefers-reduced-motion: reduce` staan alle bewegingen stil.

@@ -57,7 +57,7 @@
           var voorbij = entry.boundingClientRect.top < window.innerHeight;
           if (!entry.isIntersecting && !voorbij) return;
           var siblings = Array.prototype.indexOf.call(entry.target.parentNode.children, entry.target);
-          entry.target.style.setProperty("--reveal-delay", Math.min(siblings, 5) * 60 + "ms");
+          entry.target.style.setProperty("--reveal-delay", Math.min(siblings, 5) * 90 + "ms");
           entry.target.classList.add("is-in");
           revealObserver.unobserve(entry.target);
         });
@@ -93,7 +93,7 @@
             );
             entry.target.style.setProperty(
               "--pop-delay",
-              Math.min(siblings, 5) * 110 + "ms"
+              Math.min(siblings, 5) * 180 + "ms"
             );
             entry.target.classList.add("is-in");
             blobObserver.unobserve(entry.target);
@@ -106,6 +106,53 @@
         blobObserver.observe(el);
       });
     }
+  }
+
+  /* --- De figuren in de hero volgen je aanwijzer zachtjes -------------- */
+  var cast = document.querySelector(".hero__cast");
+
+  if (
+    cast &&
+    !reduceMotion &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  ) {
+    var doel = { x: 0, y: 0 };
+    var nu = { x: 0, y: 0 };
+    var loop = null;
+
+    function volg() {
+      // Gedempt: de figuur haalt het doel langzaam in, in plaats van te
+      // schokken. Dat maakt de beweging vloeiend in plaats van nerveus.
+      nu.x += (doel.x - nu.x) * 0.045;
+      nu.y += (doel.y - nu.y) * 0.045;
+      cast.style.setProperty("--px", nu.x.toFixed(2) + "px");
+      cast.style.setProperty("--py", nu.y.toFixed(2) + "px");
+
+      if (Math.abs(doel.x - nu.x) > 0.02 || Math.abs(doel.y - nu.y) > 0.02) {
+        loop = requestAnimationFrame(volg);
+      } else {
+        loop = null;
+      }
+    }
+
+    function start() {
+      if (!loop) loop = requestAnimationFrame(volg);
+    }
+
+    cast.addEventListener("pointermove", function (e) {
+      var r = cast.getBoundingClientRect();
+      var x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      var y = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      doel.x = x * 12;
+      doel.y = y * 8;
+      start();
+    });
+
+    cast.addEventListener("pointerleave", function () {
+      doel.x = 0;
+      doel.y = 0;
+      start();
+    });
   }
 
   /* --- Werkwijze: de stap die je ziet, licht op -------------------------- */
@@ -461,12 +508,12 @@
           stuk.style.setProperty("--dx", (Math.random() - 0.5) * 320 + "px");
           stuk.style.setProperty("--dy", -60 - Math.random() * 180 + "px");
           stuk.style.setProperty("--rot", (Math.random() - 0.5) * 720 + "deg");
-          stuk.style.animationDelay = Math.random() * 180 + "ms";
+          stuk.style.animationDelay = Math.random() * 320 + "ms";
           resultEl.append(stuk);
           (function (el) {
             setTimeout(function () {
               el.remove();
-            }, 1400);
+            }, 2400);
           })(stuk);
         }
       }
