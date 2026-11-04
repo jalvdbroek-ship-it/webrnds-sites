@@ -1,0 +1,18 @@
+{
+  "name": "webrnds-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WeBrnds — maatwerksoftware voor het MKB",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "contrast": "node tools/contrast.mjs",
+    "check:a11y": "node tools/check-a11y.mjs",
+    "check:content": "node tools/check-content.mjs",
+    "check:form": "node tools/check-form.mjs",
+    "shots": "node tools/shoot-sections.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeBrnds — maatwerksoftware voor het MKB</title>
+    <meta
+      name="description"
+      content="WeBrnds bouwt websites, webapps, automatisering en koppelingen voor het Nederlandse MKB. Eén engineer, tien klanten tegelijk, een vaste prijs vooraf."
+    />
+    <link rel="icon" href="assets/img/webrnds-logo.png" />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fredoka-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/nunito-latin.woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <!-- Met JavaScript wachten de figuren tot ze in beeld komen. Zonder
+         JavaScript staan ze meteen er: de pagina is nooit leeg. -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inhoud">Naar de inhoud</a>
+
+    <!-- Iconen: één set (Lucide), inline gesproten. -->
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-check-circle" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.5" />
+        <path d="m8 12 2.5 2.5L16 9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        <path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect width="20" height="16" x="2" y="4" rx="3" fill="none" stroke="currentColor" stroke-width="2.5" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+        <circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2.5" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24">
+        <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#top" aria-label="WeBrnds, naar boven">
+          <img src="assets/img/webrnds-logo.png" alt="WeBrnds" width="1089" height="293" />
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
+          <a href="#diensten">Diensten</a>
+          <a href="#werkwijze">Werkwijze</a>
+          <a href="#werk">Werk</a>
+          <a href="#prijzen">Prijzen</a>
+          <a href="#contact">Contact</a>
+          <a class="btn btn--geel nav__cta" href="#contact">Start je project</a>
+        </nav>
+
+        <a class="btn btn--geel header__cta" href="#contact">Start je project</a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+          <span class="visually-hidden">Menu</span>
+          <svg aria-hidden="true" width="24" height="24"><use href="#i-menu" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="inhoud">
+      <!-- 1. Hero -->
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero__grid">
+            <div>
+              <p class="chip">Maatwerksoftware voor het MKB</p>
+              <h1 class="hero__title">
+                Software die met je bedrijf <mark>meebeweegt</mark>
+              </h1>
+              <p class="hero__lead">
+                WeBrnds bouwt websites, webapps, automatisering en koppelingen voor
+                het Nederlandse MKB. Eén engineer, tien klanten tegelijk, en een
+                vaste prijs voordat we beginnen.
+              </p>
+              <div class="hero__actions">
+                <a class="btn btn--groen" href="#contact">
+                  Vertel wat je wilt bouwen
+                  <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                </a>
+                <a class="btn btn--wit" href="#werk">Bekijk het werk</a>
+                <img
+                  class="hero__mascot"
+                  src="assets/img/blobs/oranje.webp"
+                  alt=""
+                  width="520"
+                  height="476"
+                  data-mascot-cta
+                />
+              </div>
+            </div>
+
+            <div class="hero__cast" aria-hidden="true">
+              <img
+                class="cast-1 blob-in blob-squash"
+                src="assets/img/blobs/blauw.webp"
+                alt=""
+                width="520"
+                height="470"
+                style="--pop-delay: 60ms"
+              />
+              <img
+                class="cast-2 blob-in blob-bob blob-squash"
+                src="assets/img/blobs/geel.webp"
+                alt=""
+                width="520"
+                height="522"
+                style="--pop-delay: 220ms"
+              />
+              <img
+                class="cast-3 blob-in blob-bob blob-bob--slow blob-squash"
+                src="assets/img/blobs/roze.webp"
+                alt=""
+                width="520"
+                height="524"
+                style="--pop-delay: 380ms"
+              />
+              <img
+                class="cast-4 blob-in blob-bob blob-bob--fast blob-squash"
+                src="assets/img/blobs/cyaan.webp"
+                alt=""
+                width="520"
+                height="482"
+                style="--pop-delay: 520ms"
+              />
+            </div>
+          </div>
+
+          <ul class="hero__facts">
+            <li class="pill">
+              <svg aria-hidden="true"><use href="#i-check-circle" /></svg>
+              Vaste prijs vooraf
+            </li>
+            <li class="pill">
+              <svg aria-hidden="true"><use href="#i-check-circle" /></svg>
+              Antwoord binnen één werkdag
+            </li>
+            <li class="pill">
+              <svg aria-hidden="true"><use href="#i-check-circle" /></svg>
+              Je code is van jou
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. Diensten -->
+      <section class="section section--tint" id="diensten">
+        <div class="drift-layer" aria-hidden="true">
+          <img class="drift drift--a" src="assets/img/blobs/cyaan.webp" alt="" width="520" height="482" loading="lazy" decoding="async" style="top: 6%; right: -3rem; width: 8rem" />
+          <img class="drift drift--b" src="assets/img/blobs/roze.webp" alt="" width="520" height="524" loading="lazy" decoding="async" style="bottom: 4%; left: -3rem; width: 9rem" />
+        </div>
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--blauw">Diensten</p>
+            <h2 class="section__title">Wat we voor je bouwen</h2>
+            <p class="lead">
+              Van een website die je zelf bijhoudt tot een platform waar je klanten
+              inloggen. Altijd maatwerk, altijd gebouwd om bij jouw proces te
+              passen.
+            </p>
+          </div>
+
+          <div class="service-grid">
+            <article class="service-card">
+              <div class="service-card__top">
+                <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/blauw.webp" alt="" width="520" height="470" loading="lazy" decoding="async" />
+                <h3>Websites &amp; webapps</h3>
+              </div>
+              <p>
+                Een site of app die jouw proces volgt, in plaats van een proces
+                dat om jouw site heen is gebouwd.
+              </p>
+              <ul class="check-list">
+                <li>Website op maat</li>
+                <li>Webapp met eigen functionaliteit</li>
+                <li>Klantportaal</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card__top">
+                <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/oranje.webp" alt="" width="520" height="476" loading="lazy" decoding="async" />
+                <h3>Workflows</h3>
+              </div>
+              <p>
+                Werk dat je nu met de hand doet, loopt daarna vanzelf. Je team
+                houdt het overzicht, niet over de controle.
+              </p>
+              <ul class="check-list">
+                <li>Processen vastgelegd en overgedragen</li>
+                <li>Automatische stappen tussen systemen</li>
+                <li>Minder controle- en foutwerk</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card__top">
+                <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/cyaan.webp" alt="" width="520" height="482" loading="lazy" decoding="async" />
+                <h3>API-koppelingen</h3>
+              </div>
+              <p>
+                Twee systemen die nu niet met elkaar praten, worden er één. Data
+                hoeft niet meer over en weer gekopieerd te worden.
+              </p>
+              <ul class="check-list">
+                <li>Koppelingen tussen je bestaande tools</li>
+                <li>Eén plek voor je gegevens</li>
+                <li>Stabiele, geteste interfaces</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card__top">
+                <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/lila.webp" alt="" width="520" height="512" loading="lazy" decoding="async" />
+                <h3>AI-integraties</h3>
+              </div>
+              <p>
+                AI die past bij jouw werk, niet een chatbot uit een doos. Wij
+                bouwen de assistent die jouw team echt gebruikt.
+              </p>
+              <ul class="check-list">
+                <li>Assistent in je eigen systeem</li>
+                <li>Zoeken, samenvatten en opstellen</li>
+                <li>Onderdeel van je product, geen apart tooltje</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card__top">
+                <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/groen.webp" alt="" width="520" height="520" loading="lazy" decoding="async" />
+                <h3>Beeldmerk &amp; huisstijl</h3>
+              </div>
+              <p>
+                Een merk dat klopt, met een website die het waarmaakt. Vaak
+                begint het hier: hoe moet dit eruitzien?
+              </p>
+              <ul class="check-list">
+                <li>Beeldmerk en kleurenpalet</li>
+                <li>Typografie en beeldstijl</li>
+                <li>Website in dezelfde stijl</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Werkwijze -->
+      <section class="section" id="werkwijze">
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--groen">Werkwijze</p>
+            <h2 class="section__title">Zo werken we</h2>
+            <p class="lead">
+              Van je eerste mail tot een site die live staat: vier stappen, en je
+              weet steeds waar je bent.
+            </p>
+          </div>
+
+          <div class="path" data-path>
+            <span class="path__rail" aria-hidden="true"></span>
+            <article class="path__step is-active">
+              <div class="path__badge">
+                <img class="blob-in blob-squash" src="assets/img/blobs/oranje.webp" alt="" width="520" height="476" loading="lazy" decoding="async" />
+              </div>
+              <div class="path__body">
+                <p class="path__step__nummer">Stap 01</p>
+                <h3>Je stuurt je vraag</h3>
+                <p>
+                  Een paar regels is genoeg: wat je wilt hebben en waar het nu
+                  vastloopt. Je krijgt binnen één werkdag antwoord.
+                </p>
+              </div>
+            </article>
+
+            <article class="path__step">
+              <div class="path__badge">
+                <img class="blob-in blob-squash" src="assets/img/blobs/groen.webp" alt="" width="520" height="520" loading="lazy" decoding="async" />
+              </div>
+              <div class="path__body">
+                <p class="path__step__nummer">Stap 02</p>
+                <h3>We bellen dertig minuten</h3>
+                <p>
+                  Vrijblijvend. We kijken naar je proces en zeggen het eerlijk als
+                  het niet bij ons past.
+                </p>
+              </div>
+            </article>
+
+            <article class="path__step">
+              <div class="path__badge">
+                <img class="blob-in blob-squash" src="assets/img/blobs/geel.webp" alt="" width="520" height="522" loading="lazy" decoding="async" />
+              </div>
+              <div class="path__body">
+                <p class="path__step__nummer">Stap 03</p>
+                <h3>Je krijgt een vaste prijs</h3>
+                <p>
+                  Een offerte met prijs en doorlooptijd. Geen uurtarief dat
+                  onderweg oploopt.
+                </p>
+              </div>
+            </article>
+
+            <article class="path__step">
+              <div class="path__badge">
+                <img class="blob-in blob-squash" src="assets/img/blobs/violet.webp" alt="" width="520" height="672" loading="lazy" decoding="async" />
+              </div>
+              <div class="path__body">
+                <p class="path__step__nummer">Stap 04</p>
+                <h3>We bouwen het, stap voor stap</h3>
+                <p>
+                  Per stap een werkende preview, zodat je ziet wat er gebeurt
+                  voordat het live gaat. Na week 1 staat er al iets dat werkt.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Werk -->
+      <section class="section section--tint" id="werk">
+        <div class="drift-layer" aria-hidden="true">
+          <img class="drift drift--a" src="assets/img/blobs/cyaan.webp" alt="" width="520" height="482" loading="lazy" decoding="async" style="top: 6%; right: -3rem; width: 8rem" />
+          <img class="drift drift--b" src="assets/img/blobs/roze.webp" alt="" width="520" height="524" loading="lazy" decoding="async" style="bottom: 4%; left: -3rem; width: 9rem" />
+        </div>
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--oranje">Werk</p>
+            <h2 class="section__title">De bedrijven die met ons bouwen</h2>
+            <p class="lead">
+              Drie klanten, drie heel verschillende vragen. Wat ze gemeen hebben:
+              het moest echt passen bij hun bedrijf.
+            </p>
+          </div>
+
+          <div class="work-grid">
+            <article class="work-card">
+              <div class="work-card__media">
+                <img
+                  src="assets/img/project-lils-haarsalon.jpg"
+                  alt=""
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  data-fallback
+                />
+                <img
+                  class="fallback"
+                  src="assets/img/blobs/koraal.webp"
+                  alt=""
+                  width="520"
+                  height="520" loading="lazy" decoding="async" />
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__meta">Rozenburg · beeldmerk, huisstijl en website</p>
+                <h3>Lil's haarsalon</h3>
+                <p>
+                  Een site die het vertrouwen wint voordat iemand binnenloopt.
+                  Gebouwd rond het stoplicht bij de deur: rood is vol, oranje is
+                  misschien, groen betekent dat je wel terecht kunt.
+                </p>
+                <a class="work-card__link" href="https://webrnds.com/nl/logos-visual-identities">
+                  Bekijk het project
+                  <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div class="work-card__media">
+                <img
+                  src="assets/img/project-wesleys-ambacht.jpg"
+                  alt=""
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  data-fallback
+                />
+                <img
+                  class="fallback"
+                  src="assets/img/blobs/blauw.webp"
+                  alt=""
+                  width="520"
+                  height="470" loading="lazy" decoding="async" />
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__meta">Stellendam · beeldmerk en websiteconcept</p>
+                <h3>Wesley's Ambacht</h3>
+                <p>
+                  Verse vis recht van de vismijn. Beeldmerk, huisstijl en een
+                  websiteconcept dat dezelfde warmte vasthoudt als de haven.
+                </p>
+                <a class="work-card__link" href="https://webrnds.com/nl/logos-visual-identities">
+                  Bekijk het project
+                  <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <div class="work-card__media">
+                <img
+                  src="assets/img/project-gevel-helden.jpg"
+                  alt=""
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  data-fallback
+                />
+                <img
+                  class="fallback"
+                  src="assets/img/blobs/geel.webp"
+                  alt=""
+                  width="520"
+                  height="522" loading="lazy" decoding="async" />
+              </div>
+              <div class="work-card__body">
+                <p class="work-card__meta">Zuid-Holland · positionering en website</p>
+                <h3>Gevel Helden</h3>
+                <p>
+                  Vijf vakgebieden onder één dak, met een vaste ploeg. De belofte
+                  moest zichtbaar zijn: gratis inspectie, eerlijk advies, een
+                  vaste prijs vooraf.
+                </p>
+                <a class="work-card__link" href="https://webrnds.com/nl/logos-visual-identities">
+                  Bekijk het project
+                  <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Prijzen -->
+      <section class="section" id="prijzen">
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--lila">Prijzen</p>
+            <h2 class="section__title">Wat kost jouw project?</h2>
+            <p class="lead">
+              Kies wat je wilt hebben en zie meteen waar je aan begint. Dit is
+              een indicatie; na het gesprek van dertig minuten krijg je een vaste
+              prijs.
+            </p>
+          </div>
+
+          <div class="price">
+            <div class="price__form" data-price>
+              <fieldset>
+                <legend>Wat wil je hebben?</legend>
+                <div class="price__options">
+                  <label class="option">
+                    <input type="radio" name="pakket" value="website" checked />
+                    <span>
+                      <span class="option__title">Website</span>
+                      <span class="option__note">vanaf €2.500 · site die je zelf bijhoudt</span>
+                    </span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="pakket" value="webapp" />
+                    <span>
+                      <span class="option__title">Webapp</span>
+                      <span class="option__note">vanaf €5.000 · functionaliteit die alleen voor jou werkt</span>
+                    </span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="pakket" value="platform" />
+                    <span>
+                      <span class="option__title">Platform of klantportaal</span>
+                      <span class="option__note">vanaf €10.000 · meerdere gebruikers, eigen accounts</span>
+                    </span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="pakket" value="automatisering" />
+                    <span>
+                      <span class="option__title">Alleen automatisering</span>
+                      <span class="option__note">vanaf €2.000 · koppelingen en workflows</span>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="price__extras">
+                <fieldset>
+                  <legend>Wat komt er nog bij?</legend>
+                  <div class="price__options">
+                    <label class="option">
+                      <input type="checkbox" name="workflow" />
+                      <span>
+                        <span class="option__title">Complete eerste workflow</span>
+                        <span class="option__note">vanaf €5.000 · proces van begin tot eind</span>
+                      </span>
+                    </label>
+                    <label class="option">
+                      <input type="checkbox" name="ai" />
+                      <span>
+                        <span class="option__title">AI-integratie</span>
+                        <span class="option__note">op aanvraag · prijs na het gesprek</span>
+                      </span>
+                    </label>
+                    <label class="option">
+                      <input type="checkbox" name="onderhoud" />
+                      <span>
+                        <span class="option__title">Onderhoud</span>
+                        <span class="option__note">€175 per maand · updates en kleine wijzigingen</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Extra koppelingen of automatiseringen</legend>
+                  <div class="option">
+                    <span>
+                      <span class="option__title">Losse stukken</span>
+                      <span class="option__note">€2.000 per koppeling, maximaal 5</span>
+                    </span>
+                    <span class="stepper">
+                      <button type="button" data-stap="-1" aria-label="Eén koppeling minder">
+                        <svg aria-hidden="true" width="16" height="16"><use href="#i-minus" /></svg>
+                      </button>
+                      <input
+                        type="number"
+                        name="koppelingen"
+                        min="0"
+                        max="5"
+                        step="1"
+                        value="0"
+                        aria-label="Aantal koppelingen"
+                      />
+                      <button type="button" data-stap="1" aria-label="Eén koppeling meer">
+                        <svg aria-hidden="true" width="16" height="16"><use href="#i-plus" /></svg>
+                      </button>
+                    </span>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
+            <aside class="price__summary" aria-label="Prijsindicatie">
+              <div class="price__mascot-row">
+                <p class="chip chip--geel">Jouw indicatie</p>
+                <img
+                  class="price__mascot blob-squash"
+                  src="assets/img/blobs/geel.webp"
+                  alt=""
+                  width="520"
+                  height="522"
+                  loading="lazy"
+                  decoding="async"
+                  data-mascot
+                />
+              </div>
+              <div class="price__rows" data-price-rows></div>
+              <p class="price__total">
+                <span>Totaal</span>
+                <strong data-price-total>vanaf €2.500</strong>
+              </p>
+              <p class="price__note">
+                Exclusief btw. Een definitieve prijs krijg je na het gesprek van
+                dertig minuten.
+              </p>
+              <a
+                class="btn btn--geel"
+                href="#contact"
+                data-price-to-brief
+                style="margin-top: 1.25rem; width: 100%"
+              >
+                Zet dit in je brief
+                <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Waarom WeBrnds -->
+      <section class="section section--tint" id="waarom">
+        <div class="drift-layer" aria-hidden="true">
+          <img class="drift drift--a" src="assets/img/blobs/cyaan.webp" alt="" width="520" height="482" loading="lazy" decoding="async" style="top: 6%; right: -3rem; width: 8rem" />
+          <img class="drift drift--b" src="assets/img/blobs/roze.webp" alt="" width="520" height="524" loading="lazy" decoding="async" style="bottom: 4%; left: -3rem; width: 9rem" />
+        </div>
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--roze">Waarom WeBrnds</p>
+            <h2 class="section__title">Geen tussenlaag, wel een resultaat</h2>
+          </div>
+
+          <div class="why-grid">
+            <article class="card why-card">
+              <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/violet.webp" alt="" width="520" height="672" loading="lazy" decoding="async" />
+              <h3>Direct met de maker</h3>
+              <p>
+                Je belt met de engineer die je project bouwt. Geen overdracht, geen
+                ticket dat drie keer wordt doorgezet. Na dertig minuten heb je een
+                prijs en een doorlooptijd. Wat we afspreken, is wat je betaalt.
+              </p>
+            </article>
+
+            <article class="card why-card">
+              <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/cyaan.webp" alt="" width="520" height="482" loading="lazy" decoding="async" />
+              <h3>Je code is van jou</h3>
+              <p>
+                Alles staat in een map die van jou is. Wil je later verder met
+                iemand anders, dan neem je alles mee.
+              </p>
+              <p class="file-tree">
+                jouw-project/<br />
+                &nbsp;&nbsp;src/<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;index.html<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;pagina's<br />
+                &nbsp;&nbsp;beheer/<br />
+                &nbsp;&nbsp;<b>✓ overdraagbaar</b>
+              </p>
+            </article>
+
+            <article class="card why-card">
+              <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/roze.webp" alt="" width="520" height="524" loading="lazy" decoding="async" />
+              <h3>Elk project maakt het volgende beter</h3>
+              <p>
+                We bouwen op een systeem dat met elke klant meegroeit. Dat zie je
+                terug in de prijs en in de snelheid waarmee we opleveren.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Veelgestelde vragen -->
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section__head section__head--center">
+            <p class="chip chip--cyaan">Veelgestelde vragen</p>
+            <h2 class="section__title">Wat klanten ons het vaakst vragen</h2>
+          </div>
+
+          <div class="faq">
+            <details>
+              <summary>Wat kost een website bij WeBrnds?</summary>
+              <p>
+                Een website vanaf €2.500. Dat is een vast bedrag voor een vaste
+                scope; na het gesprek van dertig minuten staat de prijs in de
+                offerte, met een doorlooptijd erbij. Onderhoud is optioneel en
+                kost €175 per maand.
+              </p>
+            </details>
+            <details>
+              <summary>Hoe snel zie ik iets?</summary>
+              <p>
+                Je krijgt binnen één werkdag antwoord op je vraag. Na de eerste
+                week staat er al een werkende preview: per stap bouwen we verder,
+                zodat je ziet wat er gebeurt voordat het live gaat.
+              </p>
+            </details>
+            <details>
+              <summary>Van wie is de code?</summary>
+              <p>
+                Van jou. Alles staat in een map die je meekrijgt. Wil je later
+                verder werken met iemand anders, dan neem je die map mee. Dat hoort bij
+                de vaste prijs.
+              </p>
+            </details>
+            <details>
+              <summary>Werken jullie met onze bestaande systemen?</summary>
+              <p>
+                Ja. We koppelen aan wat je al gebruikt: boekhouding, planning,
+                CRM of voorraad. Bij elke koppeling kijken we eerst of de
+                bestaande data al voldoet, zodat je niet twee keer hetzelfde
+                bijhoudt.
+              </p>
+            </details>
+            <details>
+              <summary>Kunnen jullie onze huisstijl overnemen?</summary>
+              <p>
+                Ja. Vaak begint een project bij de vraag hoe het eruit moet zien.
+                We maken dan een beeldmerk, kleurenpalet en typografie, en bouwen
+                de site in dezelfde stijl, zodat alles één familie blijft.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Contact -->
+      <section class="section section--tint" id="contact">
+        <div class="container">
+          <div class="section__head">
+            <p class="chip chip--blauw">Contact</p>
+            <h2 class="section__title">Vertel wat je wilt bouwen</h2>
+            <p class="lead">
+              Een paar regels is genoeg. Binnen één werkdag hoor je van ons, en
+              na dertig minuten bellen we de prijs en doorlooptijd vast.
+            </p>
+          </div>
+
+          <div class="contact">
+            <form class="form" data-brief novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="naam">Naam *</label>
+                  <input type="text" id="naam" name="naam" autocomplete="name" required />
+                  <p class="field__error" data-error-for="naam"></p>
+                </div>
+                <div class="field">
+                  <label for="bedrijf">Bedrijf</label>
+                  <input type="text" id="bedrijf" name="bedrijf" autocomplete="organization" />
+                  <p class="field__error" data-error-for="bedrijf"></p>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="email">E-mail *</label>
+                  <input type="email" id="email" name="email" autocomplete="email" required />
+                  <p class="field__error" data-error-for="email"></p>
+                </div>
+                <div class="field">
+                  <label for="wanneer">Wanneer wil je starten?</label>
+                  <select id="wanneer" name="wanneer">
+                    <option value="Zo snel mogelijk">Zo snel mogelijk</option>
+                    <option value="Binnen 1 tot 3 maanden">Binnen 1 tot 3 maanden</option>
+                    <option value="Over 3 maanden of later">Over 3 maanden of later</option>
+                    <option value="Nog niet zeker">Nog niet zeker</option>
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="field">
+                <legend class="fieldset-label">Wat wil je bouwen? *</legend>
+                <div class="choice-group">
+                  <label class="choice"><input type="checkbox" name="wat" value="Website" />Website</label>
+                  <label class="choice"><input type="checkbox" name="wat" value="Webapp" />Webapp</label>
+                  <label class="choice"><input type="checkbox" name="wat" value="Workflow" />Workflow</label>
+                  <label class="choice"><input type="checkbox" name="wat" value="Koppeling" />Koppeling</label>
+                  <label class="choice"><input type="checkbox" name="wat" value="AI" />AI</label>
+                  <label class="choice"><input type="checkbox" name="wat" value="Beeldmerk" />Beeldmerk</label>
+                </div>
+                <p class="field__error" data-error-for="wat"></p>
+              </fieldset>
+
+              <div class="field">
+                <label for="vastloopt">Waar loopt het nu vast?</label>
+                <textarea
+                  id="vastloopt"
+                  name="vastloopt"
+                  rows="4"
+                  placeholder="Bijvoorbeeld: offertes maken kost ons uren per week, en klanten vragen steeds dezelfde dingen."
+                ></textarea>
+                <p class="field__error" data-error-for="vastloopt"></p>
+              </div>
+
+              <p class="form__status" data-brief-status role="status" aria-live="polite"></p>
+
+              <button class="btn btn--groen" type="submit" data-brief-submit>
+                Verstuur je vraag
+                <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </button>
+              <p class="price__note">
+                We bewaren je gegevens niet op de site. Je brief komt binnen bij
+                de maker zelf.
+              </p>
+            </form>
+
+            <div class="form-result" data-brief-result hidden>
+              <img class="blob blob-icon blob-in blob-squash" src="assets/img/blobs/groen.webp" alt="" width="520" height="520" loading="lazy" decoding="async" />
+              <h3 data-result-title>Je vraag staat bij de maker</h3>
+              <p data-result-text>Je krijgt binnen één werkdag antwoord, meestal sneller.</p>
+              <p>
+                Liever direct mailen? Dat kan ook:
+                <a data-result-mail href="mailto:schreuderdarren@gmail.com">schreuderdarren@gmail.com</a>.
+              </p>
+              <button class="btn btn--wit" type="button" data-brief-opnieuw>
+                Nog een vraag sturen
+              </button>
+            </div>
+
+            <div class="contact__info">
+              <div class="info-card">
+                <svg aria-hidden="true"><use href="#i-mail" /></svg>
+                <div>
+                  <strong>Liever mailen?</strong>
+                  <a href="mailto:schreuderdarren@gmail.com">schreuderdarren@gmail.com</a>
+                  <p class="price__note">Antwoord binnen één werkdag.</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg aria-hidden="true"><use href="#i-pin" /></svg>
+                <div>
+                  <strong>Waar we werken</strong>
+                  Rozenburg, Zuid-Holland
+                  <p class="price__note">We werken voor klanten in heel Nederland.</p>
+                </div>
+              </div>
+              <div class="info-card">
+                <svg aria-hidden="true"><use href="#i-check-circle" /></svg>
+                <div>
+                  <strong>Direct met de maker</strong>
+                  Geen tussenlaag, geen accountmanager ertussen.
+                  <p class="price__note">Eén engineer, tien klanten tegelijk.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Afsluitende CTA -->
+    <section class="closing" aria-labelledby="closing-titel">
+      <div class="container closing__inner">
+        <div class="closing__tekst">
+          <p class="chip chip--geel">Klaar om te beginnen?</p>
+          <h2 class="closing__titel" id="closing-titel">
+            Vertel wat je wilt bouwen
+          </h2>
+          <p class="lead">
+            Een paar regels is genoeg. Binnen één werkdag hoor je van ons, en na
+            dertig minuten bellen we de prijs en doorlooptijd vast.
+          </p>
+          <a class="btn btn--geel" href="#contact">
+            Start je project
+            <svg aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          </a>
+        </div>
+        <div class="closing__cast" aria-hidden="true">
+          <img
+            class="closing__blob blob-in blob-bob"
+            src="assets/img/blobs/cyaan.webp"
+            alt=""
+            width="520"
+            height="482"
+          />
+          <img
+            class="closing__blob closing__blob--2 blob-in blob-bob blob-bob--slow"
+            src="assets/img/blobs/geel.webp"
+            alt=""
+            width="520"
+            height="522"
+          />
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-cast" aria-hidden="true">
+        <img class="fc-1" src="assets/img/blobs/violet.webp" alt="" width="520" height="672" loading="lazy" decoding="async" />
+        <img class="fc-2" src="assets/img/blobs/roze.webp" alt="" width="520" height="524" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="assets/img/webrnds-logo.png" alt="WeBrnds" width="1089" height="293" loading="lazy" />
+            <p>
+              Maatwerksoftware voor het groeiende MKB. Je werkt bij ons met de
+              engineer die het ook bouwt.
+            </p>
+          </div>
+
+          <nav class="footer-col" aria-label="Diensten">
+            <h2>Diensten</h2>
+            <ul>
+              <li><a href="#diensten">Websites &amp; webapps</a></li>
+              <li><a href="#diensten">Workflow-automatisering</a></li>
+              <li><a href="#diensten">API-koppelingen</a></li>
+              <li><a href="#diensten">AI-integraties</a></li>
+              <li><a href="#diensten">Beeldmerk &amp; huisstijl</a></li>
+            </ul>
+          </nav>
+
+          <nav class="footer-col" aria-label="Werk">
+            <h2>Werk</h2>
+            <ul>
+              <li><a href="#werk">Lil's haarsalon</a></li>
+              <li><a href="#werk">Wesley's Ambacht</a></li>
+              <li><a href="#werk">Gevel Helden</a></li>
+              <li><a href="#prijzen">Prijzen</a></li>
+            </ul>
+          </nav>
+
+          <nav class="footer-col" aria-label="Contact">
+            <h2>Contact</h2>
+            <ul>
+              <li><a href="mailto:schreuderdarren@gmail.com">schreuderdarren@gmail.com</a></li>
+              <li>Rozenburg, Zuid-Holland</li>
+              <li>KvK 42127859</li>
+              <li><a href="#faq">Veelgestelde vragen</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 WeBrnds · KvK 42127859</p>
+          <p>Geen cookies, geen trackers.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/site.js" defer></script>
+  </body>
+</html>

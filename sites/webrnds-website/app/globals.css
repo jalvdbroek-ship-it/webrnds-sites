@@ -1,0 +1,382 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --paper: oklch(0.982 0.005 250);
+  --surface: oklch(1 0 0);
+  --ink: oklch(0.24 0.028 255);
+  --ink-muted: oklch(0.5 0.022 255);
+  --on-signal: oklch(1 0 0);
+  --on-accent: oklch(0.24 0.028 255);
+  --line: oklch(0.9 0.008 252);
+  --line-strong: oklch(0.6 0.014 252);
+  --signaal: oklch(0.47 0.15 253);
+  --signaal-strong: oklch(0.39 0.135 254);
+  --zuurstof: oklch(0.88 0.19 103);
+
+  --rail: 1180px;
+  --gutter: 20px;
+  --dur-snel: 120ms;
+  --dur-basis: 180ms;
+  --dur-opening: 240ms;
+  --ease: cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: oklch(0.185 0.018 256);
+    --surface: oklch(0.235 0.02 256);
+    --ink: oklch(0.955 0.006 250);
+    --ink-muted: oklch(0.78 0.016 250);
+    --on-signal: oklch(0.185 0.018 256);
+    --on-accent: oklch(0.185 0.018 256);
+    --line: oklch(0.33 0.02 254);
+    --line-strong: oklch(0.52 0.024 254);
+    --signaal: oklch(0.75 0.13 253);
+    --signaal-strong: oklch(0.83 0.11 253);
+    --zuurstof: oklch(0.88 0.19 103);
+  }
+}
+
+[data-theme="dark"] {
+  --paper: oklch(0.185 0.018 256);
+  --surface: oklch(0.235 0.02 256);
+  --ink: oklch(0.955 0.006 250);
+  --ink-muted: oklch(0.78 0.016 250);
+  --on-signal: oklch(0.185 0.018 256);
+  --on-accent: oklch(0.185 0.018 256);
+  --line: oklch(0.33 0.02 254);
+  --line-strong: oklch(0.52 0.024 254);
+  --signaal: oklch(0.75 0.13 253);
+  --signaal-strong: oklch(0.83 0.11 253);
+  --zuurstof: oklch(0.88 0.19 103);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signaal: var(--signaal);
+  --color-signaal-strong: var(--signaal-strong);
+  --color-zuurstof: var(--zuurstof);
+  --color-on-signal: var(--on-signal);
+  --color-on-accent: var(--on-accent);
+}
+
+@theme {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --radius-control: 8px;
+  --radius-surface: 4px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    font-variation-settings:
+      "wght" 680,
+      "wdth" 108;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--zuurstof);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signaal);
+    outline-offset: 3px;
+  }
+
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .rail {
+    width: 100%;
+    max-width: var(--rail);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --gutter: 40px;
+    }
+  }
+
+  .display {
+    font-variation-settings:
+      "wght" 700,
+      "wdth" 112;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+
+  .title {
+    font-variation-settings:
+      "wght" 660,
+      "wdth" 106;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+  }
+
+  .utility {
+    font-variation-settings:
+      "wght" 600,
+      "wdth" 100;
+    font-size: 0.8125rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-muted);
+  }
+
+  .on-ink {
+    color: color-mix(in oklab, var(--paper) 72%, var(--ink));
+  }
+
+  .lead {
+    font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--ink-muted);
+    max-width: 58ch;
+  }
+
+  .prose {
+    max-width: 68ch;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding-inline: 1.125rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    font-size: 0.9375rem;
+    font-variation-settings:
+      "wght" 600,
+      "wdth" 100;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-snel) var(--ease),
+      border-color var(--dur-snel) var(--ease),
+      color var(--dur-snel) var(--ease);
+  }
+
+  .btn-primary {
+    background-color: var(--signaal);
+    color: var(--on-signal);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--signaal-strong);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background-color: color-mix(in oklab, var(--ink) 5%, transparent);
+  }
+
+  .btn-accent {
+    background-color: var(--zuurstof);
+    color: var(--on-accent);
+  }
+
+  .btn-accent:hover {
+    background-color: color-mix(in oklab, var(--zuurstof) 85%, var(--ink));
+  }
+
+  .btn-ink {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn-ink:hover {
+    background-color: color-mix(in oklab, var(--ink) 88%, var(--paper));
+  }
+
+  .card {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-surface);
+    padding: 1.5rem;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9375rem;
+  }
+
+  .data-table th {
+    font-variation-settings:
+      "wght" 600,
+      "wdth" 100;
+    color: var(--ink-muted);
+    font-size: 0.8125rem;
+    letter-spacing: 0.03em;
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 1px solid var(--line-strong);
+    vertical-align: bottom;
+  }
+
+  .data-table td {
+    padding: 0.875rem 1rem 0.875rem 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .link {
+    color: var(--ink);
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 3px;
+    transition:
+      color var(--dur-snel) var(--ease),
+      text-decoration-color var(--dur-snel) var(--ease);
+  }
+
+  .link:hover {
+    color: var(--signaal);
+    text-decoration-color: var(--signaal);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.625rem 0.75rem;
+    background-color: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-control);
+    font: inherit;
+    font-size: 0.9375rem;
+    transition:
+      border-color var(--dur-snel) var(--ease),
+      background-color var(--dur-snel) var(--ease);
+  }
+
+  .field:hover {
+    border-color: var(--ink-muted);
+  }
+
+  .field:focus-visible {
+    border-color: var(--signaal);
+  }
+
+  textarea.field {
+    min-height: 8rem;
+    resize: vertical;
+  }
+
+  .summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 0;
+    font-variation-settings:
+      "wght" 600,
+      "wdth" 100;
+  }
+
+  .summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .summary:focus-visible {
+    outline: 2px solid var(--signaal);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .ring-arc {
+    stroke-dasharray: 52.36;
+    stroke-dashoffset: 52.36;
+    animation: ring-draw 1400ms var(--ease) 150ms forwards;
+  }
+
+  .ring-dot {
+    transform-box: view-box;
+    transform-origin: 16px 16px;
+    animation: ring-travel 1400ms var(--ease) 150ms forwards;
+  }
+
+  @keyframes ring-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes ring-travel {
+    from {
+      transform: rotate(30deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-arc {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+
+    .ring-dot {
+      animation: none;
+      transform: rotate(30deg);
+    }
+  }
+}

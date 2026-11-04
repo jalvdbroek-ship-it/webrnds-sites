@@ -1,0 +1,33 @@
+{
+  "name": "webrnds-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "contrast": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/contrast.ts",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "verify:ui": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-ui.mts"
+  },
+  "dependencies": {
+    "lucide-react": "^1.61.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "better-sqlite3": "^13.0.3",
+    "playwright": "^1.64.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}
