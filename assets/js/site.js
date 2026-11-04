@@ -83,7 +83,10 @@
       var blobObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
+            // Ook revealed als de figuur al boven het venster staat: dan is
+            // hij namelijk al voorbijgescrolld en moet hij zichtbaar blijven.
+            var voorbij = entry.boundingClientRect.top < window.innerHeight;
+            if (!entry.isIntersecting && !voorbij) return;
             var siblings = Array.prototype.indexOf.call(
               entry.target.parentNode.children,
               entry.target
@@ -96,7 +99,7 @@
             blobObserver.unobserve(entry.target);
           });
         },
-        { threshold: 0.2 }
+        { threshold: 0.05 }
       );
 
       blobInTargets.forEach(function (el) {
