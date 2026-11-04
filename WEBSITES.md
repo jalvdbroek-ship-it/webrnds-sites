@@ -19,15 +19,15 @@ bevatten klantcommerciële informatie en zijn daarom niet openbaar.
 
 | Klant | Plaats | Wat het is | Status |
 | --- | --- | --- | --- |
-| Electrotechnisch Bedrijf Beijer | Rozenburg | Website met diensten, projecten en offerteaanvraag | Live, publiek |
-| Lil's haarsalon | Rozenburg | Website, beeldmerk en huisstijl rond het stoplicht-thema | Live, publiek |
-| Restaurant La Caleta | Rozenburg | Nieuwe website, Astro met Tailwind | Live, publiek |
-| Hotel Rozenburg & Brasserie Noortje | Rozenburg | Statische site zonder build-stap | Live, publiek |
-| De Gouden Kurk | Rozenburg | Webshoppreview voor de drankenhandel | Live, publiek |
-| Cafetaria De Zon | Zwartewaal | Website voor de snackbar | Live, publiek |
-| Body Action XL | Rozenburg | Website voor de sportschool met groepslessen | Live, publiek |
-| Gevel Helden | Zuid-Holland | Website, merkfilm en social assets | Privé: klantcommerciële inhoud |
-| Wesley's Ambacht | Stellendam | Privéconcept met drie stijlrichtingen en een keuzepagina | Privé: concept, geen live site |
+| [Electrotechnisch Bedrijf Beijer](https://github.com/0xtsotsi/beijer-elektro) | Rozenburg | Website met diensten, projecten en offerteaanvraag | Live, publiek |
+| [Lil's haarsalon](https://github.com/0xtsotsi/lils-haarsalon-site) | Rozenburg | Website, beeldmerk en huisstijl rond het stoplicht-thema | Live, publiek |
+| [Restaurant La Caleta](https://github.com/0xtsotsi/la-caleta) | Rozenburg | Nieuwe website, Astro met Tailwind | Live, publiek |
+| [Hotel Rozenburg & Brasserie Noortje](https://github.com/0xtsotsi/hotel-rozenburg) | Rozenburg | Statische site zonder build-stap | Live, publiek |
+| [De Gouden Kurk](https://github.com/0xtsotsi/de-gouden-kurk-site-1) | Rozenburg | Webshoppreview voor de drankenhandel | Live, publiek |
+| [Cafetaria De Zon](https://github.com/0xtsotsi/cafetaria-de-zon) | Zwartewaal | Website voor de snackbar | Live, publiek |
+| [Body Action XL](https://github.com/0xtsotsi/body-action-xl) | Rozenburg | Website voor de sportschool met groepslessen | Live, publiek |
+| Gevel Helden | Zuid-Holland | Website, merkfilm en social assets | Privé: klantcommerciële inhoud (`0xtsotsi/GevelHelden`) |
+| Wesley's Ambacht | Stellendam | Privéconcept met drie stijlrichtingen en een keuzepagina | Privé: concept, geen live site (`0xtsotsi/WesleysAmbacht`) |
 
 ## Waarom het gescheiden blijft
 
