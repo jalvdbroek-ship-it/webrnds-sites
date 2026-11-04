@@ -167,5 +167,14 @@ De figuren in de hero volgen je aanwijzer zachtjes mee, elk met een eigen
 diepte: de grote beweegt bijna niet, de kleine het meest. Het gaat om
 twaalf pixels op het hoogste, gedempt per frame, dus het is een hint.
 
+De vier figuren in de hero vormen één compositie met de verhoudingen van
+het referentiebeeld. Het blok heeft een vaste verhouding van 4 : 3, dus
+de compositie schaalt mee en blijft op elke schermbreedte hetzelfde beeld.
+
+Verder helpt de navigatie op een lange pagina: de scroll naar een anker
+duurt altijd 700ms (de standaard deed er ruim twee seconden over), er
+loopt een voortgangsbalk bovenin, en het menu markeert de sectie waar je
+bent.
+
 Zonder JavaScript staan alle figuren meteen in beeld: de pagina is nooit
 leeg. Onder `prefers-reduced-motion: reduce` staan alle bewegingen stil.

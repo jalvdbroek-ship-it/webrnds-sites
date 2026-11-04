@@ -112,11 +112,53 @@ hint en geen spelletje.
 
 Daarnaast: knoppen duiken in als je klikt en wiebelen even bij hover, het
 label boven een kop komt met een tik, en blokken komen in beeld bij het
-scrollen (600ms, 60ms per sibling).
+scrollen (900ms, 90ms per sibling).
+
+Acht: **de sticker-reactie**. Bij hover kantelt het plaatje in een
+dienstkaart of een waaromkaart negen graden en wordt het 9% groter, alsof
+je een sticker lostrekt.
+
+## Navigatie op een lange pagina
+
+De pagina is ruim tienduizend pixels hoog. Drie dingen helpen daarbij:
+
+- **Een eigen scroll** die altijd 700ms duurt, ongeacht hoe ver je moet.
+  De standaard gladde scroll deed er ruim twee seconden over. De gladde
+  scroll uit de CSS gaat er tijdelijk uit, want die zou elke stap van deze
+  scroll nog eens gladde-scrollen.
+- **Een voortgangsbalk** bovenin, die meeloopt met de scroll.
+- **De menu-items markeren de sectie** waar je bent, via een
+  IntersectionObserver die de sectie aanwijst die het meest van het scherm
+  vult.
+
+De focus gaat mee naar de aangeklikte sectie, zodat het toetsenbord daar
+verder gaat. Onder `prefers-reduced-motion: reduce` is de scroll direct.
 
 Onder `prefers-reduced-motion: reduce` staan alle bewegingen stil: de figuren
 staan direct in hun eindstand, de scroll-reveal toont de inhoud meteen en de
 confetti blijft weg.
+
+## De compositie van de figuren
+
+De vier figuren in de hero vormen één cluster, met dezelfde verhoudingen als
+het referentiebeeld: één grote blauwe hart in het midden, een gele ster
+linksboven, een roze vierkant rechtsonder en een kleine cyan bloem
+rechtsachteraan.
+
+Het blok heeft een vaste verhouding van 4 : 3 en alle maten en posities zijn
+percentages van dat blok. Daardoor schaalt de compositie mee met de
+schermbreedte en blijft hij overal hetzelfde beeld, in plaats van te
+verschillen per breakpoint. Het is ook precies het beeld dat het merk
+ gebruikt, dus de site en het logo zeggen hetzelfde.
+
+De laagorde is bewust: de cyan bloem ligt het verst, dan de hart, dan de
+ster, en het roze vierkant ligt boven alles. Zo vallen de gezichten niet
+over elkaar.
+
+De draaiing van de figuren staat in de `rotate`-eigenschap en niet in
+`transform`. De veer-animatie gebruikt `transform`, en die zou de
+draaiing anders overschrijven: de figuur zou tijdens de veer rechtop
+staan en pas na afloop kantelen.
 
 ## Uitlijning
 

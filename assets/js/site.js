@@ -108,6 +108,132 @@
     }
   }
 
+  /* --- Scrollen naar een anker -------------------------------------------
+   De pagina is ruim tienduizend pixels hoog. De standaard gladde scroll
+   duurt daar ruim een seconde, wat lang aanvoelt. Deze scroll duurt
+   altijd even lang, ongeacht hoe ver je moet: snel naar beneden, en nog
+   steeds rustig. */
+  function scrollNaar(doel) {
+    var start = window.scrollY;
+    var verschil = doel - start;
+    if (Math.abs(verschil) < 2) return;
+    if (reduceMotion) {
+      window.scrollTo(0, doel);
+      return;
+    }
+    var duur = 700;
+    var startTijd = null;
+    // De gladde scroll uit de CSS zou elke stap van deze scroll nog eens
+    // gladde-scrollen. Daarom gaat hij er even uit.
+    var wortel = document.documentElement;
+    var vorige = wortel.style.scrollBehavior;
+    wortel.style.scrollBehavior = "auto";
+
+    function klaar() {
+      wortel.style.scrollBehavior = vorige;
+    }
+
+    function stap(tijd) {
+      if (startTijd === null) startTijd = tijd;
+      var voortgang = Math.min((tijd - startTijd) / duur, 1);
+      // Een zachte afremming: snel weg, langzaam aan.
+      var ease = 1 - Math.pow(1 - voortgang, 3);
+      window.scrollTo(0, start + verschil * ease);
+      if (voortgang < 1) {
+        requestAnimationFrame(stap);
+      } else {
+        klaar();
+      }
+    }
+
+    requestAnimationFrame(stap);
+  }
+
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    var id = link.getAttribute("href");
+    if (!id || id === "#") return;
+    var doel = document.querySelector(id);
+    if (!doel) return;
+    e.preventDefault();
+    scrollNaar(doel.getBoundingClientRect().top + window.scrollY - 80);
+    // De focus gaat mee, zodat het toetsenbord op de nieuwe plek staat.
+    doel.setAttribute("tabindex", "-1");
+    doel.focus({ preventScroll: true });
+    history.replaceState(null, "", id);
+  });
+
+  /* --- De voortgangsbalk bovenaan -------------------------------------- */
+  var voortgang = document.querySelector("[data-voortgang]");
+
+  if (voortgang) {
+    var bijVoortgang = false;
+
+    function zetVoortgang() {
+      if (bijVoortgang) return;
+      bijVoortgang = true;
+      var hoogte = document.documentElement.scrollHeight - window.innerHeight;
+      var deel = hoogte > 0 ? Math.min(Math.max(window.scrollY / hoogte, 0), 1) : 0;
+      voortgang.style.setProperty("--deel", deel.toFixed(4));
+      bijVoortgang = false;
+    }
+
+    window.addEventListener("scroll", zetVoortgang, { passive: true });
+    window.addEventListener("resize", zetVoortgang);
+    zetVoortgang();
+  }
+
+  /* --- De navigatie laat zien waar je bent ----------------------------- */
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.nav a[href^="#"]')
+  );
+  var secties = navLinks
+    .map(function (link) {
+      return document.querySelector(link.getAttribute("href"));
+    })
+    .filter(Boolean);
+
+  if (navLinks.length && secties.length && "IntersectionObserver" in window) {
+    var zichtbaar = new Map();
+
+    var sectieWatcher = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            zichtbaar.set(entry.target, entry.intersectionRatio);
+          } else {
+            zichtbaar.delete(entry.target);
+          }
+        });
+
+        // De sectie die het meest van het scherm vult, wint.
+        var beste = null;
+        var besteDeel = 0;
+        zichtbaar.forEach(function (deel, sectie) {
+          if (deel > besteDeel) {
+            besteDeel = deel;
+            beste = sectie;
+          }
+        });
+
+        navLinks.forEach(function (link) {
+          var isHuidig = beste !== null && link.getAttribute("href") === "#" + beste.id;
+          if (isHuidig) {
+            link.setAttribute("aria-current", "true");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      },
+      { threshold: [0, 0.15, 0.35, 0.6, 0.85] }
+    );
+
+    secties.forEach(function (sectie) {
+      sectieWatcher.observe(sectie);
+    });
+  }
+
   /* --- De figuren in de hero volgen je aanwijzer zachtjes -------------- */
   var cast = document.querySelector(".hero__cast");
 

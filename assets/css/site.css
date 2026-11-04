@@ -450,6 +450,27 @@ textarea {
 
 /* --- 5. Header en navigatie ---------------------------------------------- */
 
+/* De voortgangsbalk: een dunne sticker die meeloopt. */
+.voortgang {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.voortgang span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(var(--deel, 0));
+  background: linear-gradient(to right, var(--geel), var(--oranje));
+  border-bottom: 1.5px solid var(--ink);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -630,20 +651,26 @@ textarea {
   font-size: var(--step--1);
 }
 
+/* De vier figuren vormen één cluster, in dezelfde verhoudingen als het
+   referentiebeeld: één grote blauwe hart in het midden, een gele ster
+   linksboven, een roze vierkant rechtsonder en een kleine cyan bloem
+   rechtsachteraan.
+
+   Het blok heeft een vaste verhouding van 4 : 3 en alle maten zijn
+   percentages van dat blok. Daardoor schaalt de hele compositie mee en
+   blijft hij op elke schermbreedte hetzelfde beeld. */
 .hero__cast {
   --px: 0px;
   --py: 0px;
   position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 24rem;
+  width: 100%;
+  max-width: 30rem;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
 }
 
-/* Elke figuur heeft een eigen diepte: de grote beweegt het minst, de
-   kleine het meest. Zo ontstaat er diepte zonder dat het druk wordt. */
 .hero__cast img {
   position: absolute;
-  width: clamp(6.5rem, 4.5rem + 7vw, 10.5rem);
   height: auto;
   filter: drop-shadow(0 14px 20px rgb(20 54 92 / 0.16));
   transform: translate(
@@ -655,35 +682,43 @@ textarea {
   transition: scale 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
+/* De blauwe hart: het middelpunt van de compositie. */
 .hero__cast .cast-1 {
-  position: relative;
-  width: clamp(10rem, 7rem + 11vw, 17rem);
+  width: 50%;
+  left: 18%;
+  top: 25%;
   z-index: 2;
-  --diepte: 0.45;
+  --diepte: 0.4;
 }
 
-.cast-2 {
-  top: 0;
-  left: 0;
+/* De gele ster: linksboven, voor de hart, en het dichtst bij de kijker. */
+.hero__cast .cast-2 {
+  width: 25%;
+  left: 3%;
+  top: 7%;
   rotate: -10deg;
-  --diepte: 1.35;
-}
-
-.cast-3 {
-  bottom: 4%;
-  right: 0;
-  rotate: 9deg;
   z-index: 3;
-  --diepte: 1.1;
+  --diepte: 1.15;
 }
 
-.cast-4 {
-  top: 4%;
-  right: 16%;
+/* Het roze vierkant: rechtsonder, en valt over de hart. */
+.hero__cast .cast-3 {
+  width: 27%;
+  right: 10%;
+  bottom: 2%;
+  rotate: 9deg;
+  z-index: 4;
+  --diepte: 1;
+}
+
+/* De cyan bloem: rechtsboven, het kleinst en het verst weg. */
+.hero__cast .cast-4 {
+  width: 23%;
+  right: 9%;
+  top: 6%;
   rotate: 14deg;
-  width: clamp(4.5rem, 3rem + 4vw, 7rem);
   z-index: 1;
-  --diepte: 1.55;
+  --diepte: 1.45;
 }
 
 /* --- 7. Diensten --------------------------------------------------------- */
@@ -819,6 +854,12 @@ textarea {
   border-radius: 50%;
   background: var(--paper);
   z-index: -1;
+}
+
+/* De figuur van de stap die je leest, veert even. Zo is het pad een
+   leerpad: de volgende stap trekt de aandacht. */
+.path__step.is-active .path__badge img {
+  animation: blob-in 900ms cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
 .path__badge img {
@@ -1484,28 +1525,37 @@ legend {
   margin-bottom: 2rem;
 }
 
+/* Twee figuren die naast de afsluitende tekst staan. Zelfde opbouw als
+   de hero: een vaste verhouding, en de draaiing in de `rotate`-eigenschap
+   zodat die niet botst met de veer. */
 .closing__cast {
   position: relative;
-  min-height: 16rem;
+  width: 100%;
+  max-width: 22rem;
+  aspect-ratio: 5 / 4;
+  margin-inline: auto;
 }
 
 .closing__blob {
   position: absolute;
-  width: clamp(8rem, 5rem + 8vw, 13rem);
   height: auto;
   filter: drop-shadow(0 16px 24px rgb(20 54 92 / 0.16));
 }
 
-.closing__blob:first-child {
-  top: 0;
-  left: 12%;
-  transform: rotate(-8deg);
+.closing__blob--1 {
+  width: 52%;
+  left: 2%;
+  top: 4%;
+  rotate: -8deg;
+  z-index: 2;
 }
 
 .closing__blob--2 {
-  bottom: 0;
-  right: 4%;
-  transform: rotate(10deg);
+  width: 46%;
+  right: 0;
+  bottom: 2%;
+  rotate: 10deg;
+  z-index: 1;
 }
 
 /* --- 15. Footer ---------------------------------------------------------- */
@@ -1777,6 +1827,21 @@ legend {
   .why-card:hover .blob-squash {
     scale: 1.07 0.95;
   }
+
+  /* De sticker-reactie: als je met de muis bij een kaart komt, kantelt het
+     plaatje mee, alsof je een sticker lostrekt. */
+  .service-card .blob-icon,
+  .why-card .blob-icon {
+    transition:
+      rotate 550ms cubic-bezier(0.34, 1.4, 0.64, 1),
+      scale 550ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+
+  .service-card:hover .blob-icon,
+  .why-card:hover .blob-icon {
+    rotate: -9deg;
+    scale: 1.09;
+  }
 }
 
 /* De figuren op de achtergrond: ze drijven en ademen, maar vallen niet op.
@@ -1885,12 +1950,12 @@ legend {
   }
 
   .closing__cast {
-    min-height: 13rem;
+    max-width: 18rem;
     order: -1;
   }
 
   .hero__cast {
-    min-height: 16rem;
+    max-width: 22rem;
     order: -1;
   }
 
