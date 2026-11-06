@@ -7,6 +7,11 @@ Deze repository bevat de websites van WeBrnds zelf:
 - **`sites/webrnds-website`**: de vorige versie van de site, gebouwd met
   Next.js, inclusief de huisstijlpagina als levend merkhandboek.
 
+Daarnaast staat de proefversie van de bureausite in de donkere mint-noir-stijl
+in een eigen repository: **[webrnds-test](https://github.com/jalvdbroek-ship-it/webrnds-test)**,
+live op
+**[jalvdbroek-ship-it.github.io/webrnds-test](https://jalvdbroek-ship-it.github.io/webrnds-test/)**.
+
 De websites voor klanten staan per project in hun eigen repository, zodat
 klantinformatie gescheiden blijft. Het volledige overzicht staat in
 [WEBSITES.md](WEBSITES.md).
