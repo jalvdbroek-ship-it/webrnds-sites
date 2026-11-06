@@ -11,6 +11,7 @@ blijft.
 | --- | --- | --- | --- |
 | WeBrnds | De site van het bureau: diensten, werkwijze, werk, prijzen en contact | `sites/webrnds` | [webrnds.com](https://webrnds.com) |
 | WeBrnds (vorige versie) | De Next.js-site met de huisstijlpagina als levend merkhandboek | `sites/webrnds-website` | [jalvdbroek-ship-it.github.io/webrnds-website](https://jalvdbroek-ship-it.github.io/webrnds-website/) |
+| WeBrnds (mint noir) | De proefversie van de bureausite in donkere stijl: vijf pagina's over diensten, prijzen, kennisbank, agenda en changelog | [`jalvdbroek-ship-it/webrnds-test`](https://github.com/jalvdbroek-ship-it/webrnds-test) | [jalvdbroek-ship-it.github.io/webrnds-test](https://jalvdbroek-ship-it.github.io/webrnds-test/) |
 
 ## De websites voor klanten
 
