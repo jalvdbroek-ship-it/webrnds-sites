@@ -28,7 +28,8 @@ bevatten klantcommerciële informatie en zijn daarom niet openbaar.
 | [Cafetaria De Zon](https://github.com/0xtsotsi/cafetaria-de-zon) | Zwartewaal | Website voor de snackbar | Live, publiek |
 | [Body Action XL](https://github.com/0xtsotsi/body-action-xl) | Rozenburg | Website voor de sportschool met groepslessen | Live, publiek |
 | Gevel Helden | Zuid-Holland | Website, merkfilm en social assets | Privé: klantcommerciële inhoud (`0xtsotsi/GevelHelden`) |
-| Wesley's Ambacht | Stellendam | Privéconcept met drie stijlrichtingen en een keuzepagina | Privé: concept, geen live site (`0xtsotsi/WesleysAmbacht`) |
+| [Wesley's Ambacht](https://github.com/jalvdbroek-ship-it/wesleys-ambacht-site) | Stellendam | Website van de Ambachtswinkel, catering en vergaderen. Astro met Tailwind, stijl "Havenlicht" | Privé: concept, geen live site |
+| Wesley's Ambacht (vorig concept) | Stellendam | Privéconcept met drie stijlrichtingen en een keuzepagina | Privé: vervangen door de site hierboven (`0xtsotsi/WesleysAmbacht`) |
 
 ## Waarom het gescheiden blijft
 
